@@ -318,8 +318,12 @@ footer nav{display:flex;gap:16px;flex-wrap:wrap}
     {id:"c3pdaiML", t:"מכשיר איטום שקיות 2 ב-1, נייד ונטען", c:"home", p:35.39, o:73.73, r:4.7, s:2349},
     {id:"c3dhyOll", t:"מסכת פנים LED עם 7 צבעי אור לטיפוח העור", c:"beauty", p:46.79, o:103.98, r:4.7, s:2169}
   ];
-  P.forEach(function(x){ x.off = Math.round((1 - x.p / x.o) * 100); x.save = x.o - x.p; });
-  var hotIds = P.slice().sort(function(a,b){return b.s-a.s;}).slice(0,4).map(function(x){return x.id;});
+  var hotIds = [];
+  function prep(){
+    P.forEach(function(x){ x.off = Math.round((1 - x.p / x.o) * 100); x.save = Math.round((x.o - x.p) * 100) / 100; if (!x.img) x.img = x.id + ".jpg"; });
+    hotIds = P.slice().sort(function(a,b){return (b.s||0)-(a.s||0);}).slice(0,4).map(function(x){return x.id;});
+  }
+  prep();
 
   var state = {cat:"all", q:"", sort:"hot", max:350};
   var grid = document.getElementById("grid");
@@ -327,8 +331,11 @@ footer nav{display:flex;gap:16px;flex-wrap:wrap}
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 
   var chips = document.getElementById("chips");
+  function buildChips(){
+  chips.innerHTML = ""; state.cat = "all";
   CATS.forEach(function(c){
     var n = c[0] === "all" ? P.length : P.filter(function(x){return x.c===c[0];}).length;
+    if (!n) return;
     var b = document.createElement("button");
     b.type = "button"; b.className = "chip"; b.id = "cat-" + c[0];
     b.textContent = c[1] + " (" + n + ")";
@@ -341,6 +348,8 @@ footer nav{display:flex;gap:16px;flex-wrap:wrap}
     });
     chips.appendChild(b);
   });
+  }
+  buildChips();
   document.getElementById("q").addEventListener("input", function(e){ state.q = e.target.value.trim().toLowerCase(); render(); });
   document.getElementById("sort").addEventListener("change", function(e){ state.sort = e.target.value; render(); });
   var maxEl = document.getElementById("max");
@@ -350,22 +359,27 @@ footer nav{display:flex;gap:16px;flex-wrap:wrap}
     var list = P.filter(function(x){
       return (state.cat === "all" || x.c === state.cat) && (state.max >= 350 || x.p <= state.max) && (!state.q || x.t.toLowerCase().indexOf(state.q) > -1);
     });
-    var S = {hot:function(a,b){return b.s-a.s;}, off:function(a,b){return b.off-a.off;}, low:function(a,b){return a.p-b.p;}, high:function(a,b){return b.p-a.p;}};
+    var S = {hot:function(a,b){return (b.s||0)-(a.s||0);}, off:function(a,b){return b.off-a.off;}, low:function(a,b){return a.p-b.p;}, high:function(a,b){return b.p-a.p;}};
     list.sort(S[state.sort]);
     document.getElementById("count").textContent = list.length + " מוצרים";
     if (!list.length) { grid.innerHTML = '<div class="empty">לא מצאנו מוצר שמתאים לחיפוש. נסו מילה אחרת, או חפשו בערוץ הטלגרם.</div>'; return; }
     grid.innerHTML = list.map(function(x){
       var cat = CATS.filter(function(c){return c[0]===x.c;})[0][1];
       return '<article class="prod">' +
-        '<div class="ph"><img src="' + x.id + '.jpg" alt="' + esc(x.t) + '" loading="lazy" width="480" height="480"><span class="off num">‎-' + x.off + '%</span>' + (hotIds.indexOf(x.id) > -1 ? '<span class="hotf">🔥 רב מכר</span>' : '') + '</div>' +
+        '<div class="ph"><img src="' + x.img + '" alt="' + esc(x.t) + '" loading="lazy" width="480" height="480"><span class="off num">‎-' + x.off + '%</span>' + (hotIds.indexOf(x.id) > -1 ? '<span class="hotf">🔥 רב מכר</span>' : '') + '</div>' +
         '<div class="pb"><span class="pcat">' + cat + '</span><h3>' + esc(x.t) + '</h3>' +
-        '<div class="st num"><span><span class="star">★</span> ' + x.r + '</span><span>' + x.s.toLocaleString("he-IL") + ' נמכרו</span></div>' +
+        '<div class="st num"><span><span class="star">★</span> ' + (x.r || "חדש") + '</span><span>' + (x.s ? x.s.toLocaleString("he-IL") + '+ נמכרו' : '') + '</span></div>' +
         '<div class="pr num"><b>' + fmt(x.p) + '</b><s>' + fmt(x.o) + '</s></div>' +
         '<span class="save num">חוסכים ' + fmt(x.save) + '</span>' +
         '<a class="go" href="' + L + x.id + '" target="_blank" rel="noopener sponsored">לצפייה בדיל</a></div></article>';
     }).join("");
   }
   render();
+
+  fetch("products.json?v=" + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (!d || !d.length) return;
+    P = d; prep(); buildChips(); document.getElementById("gridTitle").textContent = "כל הדילים"; render();
+  }).catch(function(){});
 
   var banner = document.getElementById("saleBanner");
   function pad(n){ return (n<10?"0":"") + n; }
