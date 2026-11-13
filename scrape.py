@@ -15,19 +15,34 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; hahotfim-site/1.0)"}
 
 # קטגוריה לפי מילות מפתח בשם המוצר (הראשונה שמתאימה מנצחת)
 CATS = [
-    ("car", ["רכב", "טסלה", "tesla", "dash cam", "dvr", "carplay", "מתנע", "jump starter", "צמיג", "tire"]),
-    ("creator", ["מיקרופון", "microphone", "סלפי", "selfie", "חצובה", "tripod", "gimbal", "מייצב", "lavalier"]),
-    ("gaming", ["gamepad", "בקר", "ram", "ddr", "keyboard", "מקלדת", "mouse", "עכבר", "gaming", "ssd", "מחשב"]),
+    ("car", ["רכב", "טסלה", "tesla", "car", "dash cam", "dvr", "carplay", "מתנע", "התנעה", "jump starter", "צמיג", "tire", "obd"]),
+    ("kids", ["תינוק", "ילדים", "ילד", "צעצוע", "בובה", "ספיידרמן", "קוספליי", "baby", "toy", "kids", "lego"]),
+    ("pets", ["חיות מחמד", "כלב", "חתול", "dog", "cat", "pet", "puppy"]),
+    ("beauty", ["פנים", "עיסוי", "מעסה", "חיטוב", "massage", "שיער", "hair", "טיפוח", "שיניים", "toothbrush", "יופי",
+                "beauty", "סוכר", "glucose", "cgm", "גילוח", "shaver"]),
+    ("kitchen", ["מטבח", "קרח", "איטום", "אוטם", "מזון", "סיר", "מחבת", "קפה", "בלנדר", "kitchen", "blender", "coffee"]),
+    ("fashion", ["מעיל", "פרווה", "שמלה", "חולצה", "מכנס", "תיק", "ארנק", "נעלי", "jacket", "bag", "wallet", "shoes"]),
+    ("outdoor", ["קמפינג", "camping", "אופני", "bike", "דייג", "fishing", "ספורט", "sport", "כושר", "fitness", "אוהל"]),
+    ("gaming", ["gamepad", "בקר", "ram", "ddr4", "ddr5", "keyboard", "מקלדת", "mouse", "עכבר", "gaming", "esports",
+                "ssd", "מחשב", "nintendo", "playstation"]),
     ("audio", ["אוזני", "earbuds", "headphone", "anc", "שעון", "watch", "טבעת", "ring", "רמקול", "speaker", "mp3", "נגן"]),
-    ("tools", ["מברג", "מקדח", "drill", "מפוח", "מסור", "saw", "laser", "פלס", "worx", "כלי עבודה"]),
-    ("beauty", ["פנים", "עיסוי", "massage", "שיער", "hair", "טיפוח", "שיניים", "toothbrush", "יופי", "beauty"]),
+    ("tools", ["מברג", "מקדח", "drill", "מפוח", "מסור", "saw", "laser", "מד פלס", "worx", "כלי עבודה", "nanovna", "antenna"]),
+    ("gadgets", ["מיקרופון", "microphone", "סלפי", "selfie", "חצובה", "tripod", "gimbal", "מייצב", "lavalier", "מקליט",
+                 "משקפי", "מקרן", "projector", "אייפון", "iphone", "כיסוי", "טלפון", "phone", "מדפסת", "printer", "power bank",
+                 "סולל", "battery", "מטען", "charger", "camera", "מצלמ"]),
 ]
+
+
+def has(low, w):
+    if w.isascii():  # מילה באנגלית: רק מילה שלמה (ש-ring לא יתפוס את monitoring)
+        return re.search(r"(?<![a-z0-9])" + re.escape(w) + r"(?![a-z0-9])", low) is not None
+    return w in low
 
 
 def category(title):
     low = title.lower()
     for cat, words in CATS:
-        if any(w in low for w in words):
+        if any(has(low, w) for w in words):
             return cat
     return "home"
 
@@ -109,6 +124,9 @@ def main():
                 continue
         x.pop("_src", None)
         merged[x["id"]] = x
+
+    for x in merged.values():
+        x["c"] = category(x["t"])
 
     items = sorted(merged.values(), key=lambda x: x.get("time", ""), reverse=True)[:MAX_ITEMS]
     keep = {os.path.basename(x["img"]) for x in items}
