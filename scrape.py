@@ -33,6 +33,17 @@ CATS = [
 ]
 
 
+# מוצרים שלא מציגים באתר (משעממים / לא בטרנד)
+BORING = ["סוכר", "cgm", "glucose", "ליל כל הקדושים", "חג המולד", "halloween", "christmas", "קוספליי", "cosplay",
+          "פסלון", "figurine", "פרווה", "antenna", "nanovna", "analyzer", "anslyzer", "כיסוי", "case", "סוללת",
+          "battery", "כבל", "cable", "מדבקה", "sticker"]
+
+
+def boring(title):
+    low = title.lower()
+    return any(has(low, w) for w in BORING)
+
+
 def has(low, w):
     if w.isascii():  # מילה באנגלית: רק מילה שלמה (ש-ring לא יתפוס את monitoring)
         return re.search(r"(?<![a-z0-9])" + re.escape(w) + r"(?![a-z0-9])", low) is not None
@@ -127,6 +138,7 @@ def main():
 
     for x in merged.values():
         x["c"] = category(x["t"])
+    merged = {k: x for k, x in merged.items() if not boring(x["t"])}
 
     items = sorted(merged.values(), key=lambda x: x.get("time", ""), reverse=True)[:MAX_ITEMS]
     keep = {os.path.basename(x["img"]) for x in items}
