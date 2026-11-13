@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="הדילים הכי שווים מאלי אקספרס במקום אחד: הנחות אמיתיות, דירוג גבוה וקודי קופון.">
+<title>חוטפים דילים</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap">
+<style>
+/* Layout: dark-first deal store. Sticky search bar, sale strip with live countdown + codes, filter rail, photo-led product grid, legal at the foot */
+:root{
+  --bg:#0D0E11; --surface:#16181D; --raise:#1D2027; --line:#262A32; --ink:#F3F4F6; --muted:#9CA1AC;
+  --accent:#FF5A36; --accent-ink:#FFFFFF; --gold:#FFC93C; --gold-ink:#1A1205; --ok:#2BD47D; --tg:#2AA3E0;
+  --font:"Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif; --fs:1; color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#F5F6F8; --surface:#FFFFFF; --raise:#F0F1F4; --line:#E3E5EA; --ink:#111318; --muted:#5F6573;
+  --accent:#E8441F; --gold:#FFC93C; --ok:#14A35A; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#F5F6F8; --surface:#FFFFFF; --raise:#F0F1F4; --line:#E3E5EA; --ink:#111318; --muted:#5F6573;
+  --accent:#E8441F; --gold:#FFC93C; --ok:#14A35A; color-scheme:light}
+html.hc{--ink:#FFF;--muted:#FFF;--line:#FFF;--surface:#000;--bg:#000;--raise:#000}
+html.ul a{text-decoration:underline!important}
+*{box-sizing:border-box}
+html{direction:rtl}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:calc(16px * var(--fs));line-height:1.55;direction:rtl;text-align:right}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.logo svg{width:36px;height:36px}
+.logo b{font-weight:900;font-size:19px;letter-spacing:-.2px;line-height:1}
+.logo small{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.4px;margin-top:3px}
+.search{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--raise);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.search svg{width:18px;height:18px;color:var(--muted);flex:none}
+.search input{border:0;background:transparent;outline:0;width:100%;min-width:0}
+.tgbtn{flex:none;display:inline-flex;align-items:center;gap:8px;background:var(--tg);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:10px 16px}
+.tgbtn svg{width:18px;height:18px}
+
+/* sale strip */
+.sale{background:linear-gradient(90deg,#3A0E05,#1C0A14);border-bottom:1px solid var(--line);color:#fff}
+.sale .wrap{padding-block:18px;display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center}
+.sale .tag{background:var(--gold);color:var(--gold-ink);font-weight:900;font-size:13px;border-radius:6px;padding:4px 10px;white-space:nowrap}
+.sale h2{font-size:20px;font-weight:800}
+.sale p{font-size:14px;color:#E9D7D2}
+.timer{display:flex;gap:6px;direction:ltr}
+.timer div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:4px 8px;text-align:center;min-width:52px}
+.timer b{display:block;font-size:20px;font-weight:800;color:var(--gold);line-height:1.2}
+.timer span{font-size:10px;color:#D9C9C4;letter-spacing:.5px}
+.codes{grid-column:1/-1;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.code{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:flex;align-items:center;gap:10px;border:1px dashed rgba(255,201,60,.55);border-radius:8px;padding:7px 12px;background:rgba(255,201,60,.06)}
+.code b{font-weight:800;letter-spacing:1.5px;color:var(--gold)}
+.code span{font-size:13px;color:#EADCD7}
+.code.done{border-style:solid;border-color:var(--ok)}
+.code.done span{color:var(--ok)}
+.code:focus-visible{outline:2px solid var(--gold)}
+
+/* hero */
+.hero .wrap{padding-block:40px 18px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.6px}
+.hero h1{font-size:clamp(30px,4.6vw,48px);font-weight:900;letter-spacing:-.5px;line-height:1.1;max-width:20ch}
+.hero p{color:var(--muted);max-width:56ch;font-size:17px}
+.trust{display:flex;flex-wrap:wrap;gap:22px;margin-top:6px;font-size:14px;color:var(--muted)}
+.trust b{color:var(--ink);font-weight:700}
+
+/* controls */
+.controls{position:sticky;top:calc(env(safe-area-inset-top,0px) + 63px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.controls .wrap{padding-block:12px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.chips{display:flex;gap:6px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:500;font-size:14px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.filters{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.filters label{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.filters select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.filters input[type=range]{accent-color:var(--accent);width:110px}
+
+/* grid */
+.gridhead{display:flex;justify-content:space-between;align-items:baseline;padding-block:22px 12px}
+.gridhead h2{font-size:22px;font-weight:800}
+.count{font-size:14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-bottom:48px}
+.prod{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:transform .2s,border-color .2s}
+.prod:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.ph{position:relative;aspect-ratio:1/1;max-width:100%;background:#fff;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.off{position:absolute;top:10px;right:10px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:13px;border-radius:6px;padding:3px 8px}
+.hotf{position:absolute;bottom:10px;right:10px;background:rgba(13,14,17,.82);color:#fff;font-size:12px;font-weight:700;border-radius:6px;padding:3px 8px}
+.pb{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pcat{font-size:12px;color:var(--muted);font-weight:500}
+.prod h3{font-size:15px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st{font-size:12.5px;color:var(--muted);display:flex;gap:10px}
+.st .star{color:var(--gold)}
+.pr{display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:6px}
+.pr b{font-size:22px;font-weight:900}
+.pr s{font-size:13px;color:var(--muted)}
+.save{font-size:12px;color:var(--ok);font-weight:700}
+.go{margin-top:8px;display:block;text-align:center;text-decoration:none;font-weight:700;font-size:15px;border-radius:10px;padding:10px;background:var(--accent);color:var(--accent-ink)}
+.go:hover{filter:brightness(1.08)}
+.empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:14px;padding:36px;text-align:center;color:var(--muted)}
+
+/* join */
+.join{border-block:1px solid var(--line);background:var(--surface)}
+.join .wrap{padding-block:40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.join h2{font-size:clamp(24px,3.2vw,32px);font-weight:900}
+.join p{color:var(--muted);margin-top:4px}
+.join .btns{display:flex;gap:10px;flex-wrap:wrap}
+.join a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;border-radius:12px;padding:13px 20px}
+.join a.t{background:var(--tg);color:#fff}
+.join a.f{background:#1877F2;color:#fff}
+.fbbtn{background:#1877F2}
+.join a.w{border:1px solid var(--line);color:var(--ink)}
+
+/* legal */
+.legal .wrap{padding-block:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.legal h2{grid-column:1/-1;font-size:20px;font-weight:800;margin-bottom:4px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 16px;min-width:0}
+summary{cursor:pointer;font-weight:700;padding-block:14px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted)}
+details[open] summary::after{content:"−"}
+.txt{color:var(--muted);padding-bottom:16px;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+.txt b{color:var(--ink)}
+footer .wrap{padding-block:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+footer nav{display:flex;gap:16px;flex-wrap:wrap}
+
+/* accessibility */
+.a11y-btn{position:fixed;left:max(16px,calc(env(safe-area-inset-left,0px) + 16px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:8;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35);display:grid;place-items:center}
+.a11y-btn svg{width:24px;height:24px}
+.a11y-panel{position:fixed;left:max(16px,calc(env(safe-area-inset-left,0px) + 16px));bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:8;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;width:220px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.a11y-panel button{border:1px solid var(--line);background:var(--raise);border-radius:8px;padding:8px;cursor:pointer;font-weight:500;text-align:right}
+
+@media (max-width:1020px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .sale .wrap{grid-template-columns:1fr;gap:12px}
+  .logo small,.tgbtn span{display:none}
+  .controls{position:static}
+  .legal .wrap{grid-template-columns:1fr}
+  .pb{padding:10px}
+  .pr b{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="חוטפים דילים, לראש הדף">
+      <svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#FF5A36"/><path d="M11 10h3v7h8v-7h3v16h-3v-6h-8v6h-3z" fill="#fff"/><circle cx="28" cy="8" r="4" fill="#FFC93C"/></svg>
+      <div><b>חוטפים דילים</b><small>DEALS FROM ALIEXPRESS</small></div>
+    </a>
+    <label class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="חיפוש: אוזניות, מתנע, מיקרופון..." aria-label="חיפוש מוצרים">
+    </label>
+    <a class="tgbtn" href="https://t.me/Hahotfim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2l-11 6.9-4.7-1.5c-1-.3-1-1 .2-1.5L20.6 3c.8-.3 1.6.2 1.3 1.3z"/></svg><span>דילים בטלגרם</span></a>
+    <a class="tgbtn fbbtn" href="https://www.facebook.com/profile.php?id=61579105779017" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg><span>דף הפייסבוק</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="sale" id="saleBanner" aria-label="מבצע פעיל">
+    <div class="wrap">
+      <span class="tag">מבצע פעיל</span>
+      <div>
+        <h2>11.11 באלי אקספרס: עד ₪190 הנחה עם קוד</h2>
+        <p>לחיצה על קוד מעתיקה אותו. קוד אחד להזמנה, בתוקף עד 18.11.</p>
+      </div>
+      <div class="timer num" aria-label="הזמן שנשאר למבצע">
+        <div><b id="t-d">0</b><span>ימים</span></div>
+        <div><b id="t-h">00</b><span>שעות</span></div>
+        <div><b id="t-m">00</b><span>דק'</span></div>
+        <div><b id="t-s">00</b><span>שנ'</span></div>
+      </div>
+      <div class="codes" id="codes"></div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">נבחר ונבדק כל יום</span>
+      <h1>הדילים הכי שווים מאלי אקספרס, במקום אחד.</h1>
+      <p>עוברים על אלפי מוצרים ומשאירים רק את מה שמשתלם: הנחות אמיתיות, דירוג גבוה ואלפי קונים מרוצים.</p>
+      <div class="trust"><span><b>‎4.7+</b> דירוג קונים</span><span><b>1,000+</b> מכירות למוצר</span><span><b>עד 60%</b> הנחה</span><span><b>5×</b> עדכונים ביום</span></div>
+    </div>
+  </section>
+
+  <section class="controls" aria-label="סינון מוצרים">
+    <div class="wrap">
+      <div class="chips" id="chips" role="group" aria-label="קטגוריות"></div>
+      <div class="filters">
+        <label>מיון
+          <select id="sort">
+            <option value="hot">הכי נמכר</option>
+            <option value="off">הנחה הכי גדולה</option>
+            <option value="low">מחיר: נמוך לגבוה</option>
+            <option value="high">מחיר: גבוה לנמוך</option>
+          </select>
+        </label>
+        <label>עד <b class="num" id="maxLabel">₪350+</b>
+          <input id="max" type="range" min="50" max="350" step="25" value="350" aria-label="מחיר מקסימלי">
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-label="מוצרים">
+    <div class="gridhead"><h2 id="gridTitle">כל הדילים</h2><span class="count num" id="count"></span></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="join">
+    <div class="wrap">
+      <div>
+        <h2>הדיל הבא נוחת קודם בטלגרם</h2>
+        <p>5 עדכונים ביום, עם קוד הקופון שמתאים לכל מוצר. בלי ספאם.</p>
+      </div>
+      <div class="btns">
+        <a class="t" href="https://t.me/Hahotfim" target="_blank" rel="noopener">הצטרפות לערוץ הטלגרם</a>
+        <a class="f" href="https://www.facebook.com/profile.php?id=61579105779017" target="_blank" rel="noopener">עקבו בפייסבוק</a>
+        <a class="w" href="https://chat.whatsapp.com/Iyb1uQQ0HdyGugYNabvmE4" target="_blank" rel="noopener">קבוצת הוואטסאפ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal">
+    <div class="wrap">
+      <h2>מידע חשוב</h2>
+      <details id="disclosure"><summary>גילוי נאות: קישורי שותפים (#פרסום)</summary>
+        <div class="txt">
+          <p>חוטפים דילים הוא אתר וערוץ עצמאיים, ואינם קשורים לאלי אקספרס או ל-Alibaba Group. שמות המותגים והתמונות שייכים לבעליהם.</p>
+          <p>הקישורים באתר הם קישורי שותפים. כשרוכשים דרכם, ייתכן שנקבל עמלה מאלי אקספרס. העמלה לא משנה את המחיר שאתם משלמים.</p>
+          <p>אנחנו לא מוכרים מוצרים. הרכישה, התשלום, המשלוח, האחריות וההחזרות מתבצעים מול אלי אקספרס והמוכרים בה, לפי התנאים שלהם.</p>
+        </div>
+      </details>
+      <details id="terms"><summary>תקנון ותנאי שימוש</summary>
+        <div class="txt">
+          <p><b>1. כללי.</b> השימוש באתר מהווה הסכמה לתנאים אלה. התקנון מנוסח בלשון זכר מטעמי נוחות ומתייחס לכל המגדרים.</p>
+          <p><b>2. מחירים.</b> המחירים באתר משוערים, כפי שהופיעו באלי אקספרס בזמן הפרסום. המחיר, המלאי, דמי המשלוח והמיסים נקבעים על ידי אלי אקספרס והמוכרים ועשויים להשתנות. המחיר הקובע הוא המחיר בעמוד המוצר בזמן הרכישה.</p>
+          <p><b>3. קודי קופון.</b> הקודים מתפרסמים כפי שהם מתקבלים מאלי אקספרס. התנאים, ההנחה והתוקף נקבעים על ידה, וייתכן שקוד יפסיק לעבוד לפני המועד המפורסם.</p>
+          <p><b>4. אחריות.</b> המידע באתר נמסר כמו שהוא, כהמלצה בלבד. איננו אחראים לאיכות המוצרים, להתאמתם, למשלוח או לנזק שייגרם משימוש בהם. לפני רכישה מומלץ לקרוא את תיאור המוצר והביקורות.</p>
+          <p><b>5. מיסים ויבוא.</b> הזמנות מחו"ל עשויות להיות חייבות במע"מ או במכס לפי החוק בישראל, באחריות הרוכש.</p>
+          <p><b>6. קניין רוחני.</b> העיצוב והתוכן הכתוב באתר שייכים לחוטפים דילים. תמונות ותיאורי מוצרים שייכים לבעליהם.</p>
+          <p><b>7. דין וסמכות.</b> על התקנון יחולו דיני מדינת ישראל.</p>
+          <p>עודכן: נובמבר 2026.</p>
+        </div>
+      </details>
+      <details id="accessibility"><summary>הצהרת נגישות</summary>
+        <div class="txt">
+          <p>האתר נבנה בהתאם להנחיות התקן הישראלי 5568 (WCAG 2.0 ברמה AA), ככל שהדבר אפשרי.</p>
+          <p><b>מה עשינו:</b> ניווט מלא במקלדת, סימון מיקוד ברור, טקסט חלופי לתמונות, ניגודיות צבעים מספקת, התאמה למסכים קטנים ולמצב בהיר וכהה, וכפתור נגישות שמאפשר להגדיל טקסט, להפעיל ניגודיות גבוהה ולהדגיש קישורים.</p>
+          <p><b>מגבלות:</b> תוכן מאתרים חיצוניים, כמו אלי אקספרס וטלגרם, אינו בשליטתנו.</p>
+          <p><b>נתקלתם בבעיה?</b> כתבו לנו בערוץ הטלגרם @Hahotfim, ונטפל בפנייה בהקדם.</p>
+          <p>עודכן: נובמבר 2026.</p>
+        </div>
+      </details>
+      <details id="privacy"><summary>פרטיות ועוגיות</summary>
+        <div class="txt">
+          <p>האתר לא אוסף פרטים אישיים ולא משתמש בעוגיות מעקב או פרסום. העדפות הנגישות נשמרות רק בדפדפן שלכם.</p>
+          <p>במעבר לאלי אקספרס, לטלגרם או לוואטסאפ חלה מדיניות הפרטיות של האתרים האלה.</p>
+          <p>מדיניות הפרטיות המלאה: <a href="https://matanos80.minisite.ms/privacy" target="_blank" rel="noopener">matanos80.minisite.ms/privacy</a></p>
+        </div>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 חוטפים דילים · אתר עצמאי שאינו קשור לאלי אקספרס · קישורי שותפים (#פרסום) · מחירים משוערים</span>
+    <nav aria-label="קישורים משפטיים"><a href="#terms">תקנון</a><a href="#accessibility">נגישות</a><a href="#privacy">פרטיות</a><a href="#disclosure">גילוי נאות</a></nav>
+  </div>
+</footer>
+
+<button class="a11y-btn" id="a11yBtn" type="button" aria-label="תפריט נגישות" aria-expanded="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M19 9h-5v4l2.5 7h-2.1L12 14.5 9.6 20H7.5L10 13V9H5V7h14z"/></svg></button>
+<div class="a11y-panel" id="a11yPanel" hidden role="dialog" aria-label="אפשרויות נגישות">
+  <b>נגישות</b>
+  <button type="button" id="a11y-plus">הגדלת טקסט</button>
+  <button type="button" id="a11y-minus">הקטנת טקסט</button>
+  <button type="button" id="a11y-hc">ניגודיות גבוהה</button>
+  <button type="button" id="a11y-ul">הדגשת קישורים</button>
+  <button type="button" id="a11y-reset">איפוס</button>
+</div>
+
+<script>
+(function(){
+  var L = "https://s.click.aliexpress.com/e/_";
+  var SALE = {until:new Date("2026-11-18T23:59:59+02:00"), codes:[["IL01",6,45],["IL02",16,92],["IL03",26,145],["IL09",40,225],["IL11",51,270],["IL06",63,375],["IL12",115,675],["IL13",190,"1,100"]]};
+  var CATS = [["all","הכל"],["car","רכב"],["audio","אודיו וגאדג'טים"],["creator","צילום ותוכן"],["gaming","גיימינג ומחשבים"],["tools","כלי עבודה"],["home","בית וחיות מחמד"],["beauty","טיפוח"]];
+  // דילים שפורסמו בערוץ (מחיר בזמן הפרסום, נובמבר 2026). id = קוד הקישור = שם קובץ התמונה
+  var P = [
+    {id:"c2wm7ik3", t:"WORX WX242 מברג חשמלי אלחוטי חכם עם סט ביטים", c:"tools", p:161.69, o:367.48, r:4.9, s:4925},
+    {id:"c3TYZDNZ", t:"מפוח טורבו חשמלי 300,000 RPM ללא מברשות", c:"tools", p:227.69, o:494.98, r:4.9, s:2960},
+    {id:"c4mXQXNv", t:"זיכרון RAM ‏DDR4 ‏8GB/16GB ‏3200MHz", c:"gaming", p:316.99, o:704.43, r:4.9, s:13487},
+    {id:"c3nHDOOr", t:"בקר GameSir Tarantula Pro ל-Switch 2, ‏PC וטלפון", c:"gaming", p:181.28, o:470.29, r:4.8, s:1489},
+    {id:"c3wN6rGP", t:"מיקרופון אלחוטי BOYA Mini 2 עם הפחתת רעשים", c:"creator", p:84.90, o:202.14, r:4.8, s:2670},
+    {id:"c3IWtALh", t:"מעמד סלפי וחצובה Ulanzi MT-84 עם MagSafe ושלט", c:"creator", p:112.90, o:268.81, r:4.8, s:1144},
+    {id:"c3s3P3m3", t:"אוזניות SoundPEATS H3 עם ביטול רעשים 55dB", c:"audio", p:315.16, o:740.28, r:4.8, s:1230},
+    {id:"c2QBIH67", t:"שעון חכם CMF by Nothing Watch Pro 2 עם מסך AMOLED", c:"audio", p:289.90, o:690.24, r:4.8, s:1343},
+    {id:"c3hQjSJD", t:"מסך 11.3 אינץ' לרכב K2 Pro עם מצלמת 4K ו-CarPlay", c:"car", p:321.01, o:862.01, r:4.7, s:2715},
+    {id:"c3tvZcEf", t:"מגש הגה לטסלה Model 3/Y: שולחן למחשב נייד ולאוכל", c:"car", p:205.91, o:516.10, r:4.9, s:3477},
+    {id:"c3selplZ", t:"מתנע אלחוטי לרכב עם מדחס אוויר וסוללת גיבוי", c:"car", p:140.12, o:325.85, r:4.8, s:1480},
+    {id:"c4nMKYxt", t:"מזרקת מים חכמה לחיות מחמד ROJECO ‏8.5 ליטר עם אפליקציה", c:"home", p:290.90, o:581.80, r:4.9, s:546},
+    {id:"c3pdaiML", t:"מכשיר איטום שקיות 2 ב-1, נייד ונטען", c:"home", p:35.39, o:73.73, r:4.7, s:2349},
+    {id:"c3dhyOll", t:"מסכת פנים LED עם 7 צבעי אור לטיפוח העור", c:"beauty", p:46.79, o:103.98, r:4.7, s:2169}
+  ];
+  P.forEach(function(x){ x.off = Math.round((1 - x.p / x.o) * 100); x.save = x.o - x.p; });
+  var hotIds = P.slice().sort(function(a,b){return b.s-a.s;}).slice(0,4).map(function(x){return x.id;});
+
+  var state = {cat:"all", q:"", sort:"hot", max:350};
+  var grid = document.getElementById("grid");
+  function fmt(n){ return "₪" + n.toLocaleString("he-IL",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  var chips = document.getElementById("chips");
+  CATS.forEach(function(c){
+    var n = c[0] === "all" ? P.length : P.filter(function(x){return x.c===c[0];}).length;
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.id = "cat-" + c[0];
+    b.textContent = c[1] + " (" + n + ")";
+    b.setAttribute("aria-pressed", c[0] === "all" ? "true" : "false");
+    b.addEventListener("click", function(){
+      state.cat = c[0];
+      [].forEach.call(chips.children, function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      document.getElementById("gridTitle").textContent = c[0] === "all" ? "כל הדילים" : c[1];
+      render();
+    });
+    chips.appendChild(b);
+  });
+  document.getElementById("q").addEventListener("input", function(e){ state.q = e.target.value.trim().toLowerCase(); render(); });
+  document.getElementById("sort").addEventListener("change", function(e){ state.sort = e.target.value; render(); });
+  var maxEl = document.getElementById("max");
+  maxEl.addEventListener("input", function(){ state.max = +maxEl.value; document.getElementById("maxLabel").textContent = state.max >= 350 ? "₪350+" : "₪" + state.max; render(); });
+
+  function render(){
+    var list = P.filter(function(x){
+      return (state.cat === "all" || x.c === state.cat) && (state.max >= 350 || x.p <= state.max) && (!state.q || x.t.toLowerCase().indexOf(state.q) > -1);
+    });
+    var S = {hot:function(a,b){return b.s-a.s;}, off:function(a,b){return b.off-a.off;}, low:function(a,b){return a.p-b.p;}, high:function(a,b){return b.p-a.p;}};
+    list.sort(S[state.sort]);
+    document.getElementById("count").textContent = list.length + " מוצרים";
+    if (!list.length) { grid.innerHTML = '<div class="empty">לא מצאנו מוצר שמתאים לחיפוש. נסו מילה אחרת, או חפשו בערוץ הטלגרם.</div>'; return; }
+    grid.innerHTML = list.map(function(x){
+      var cat = CATS.filter(function(c){return c[0]===x.c;})[0][1];
+      return '<article class="prod">' +
+        '<div class="ph"><img src="' + x.id + '.jpg" alt="' + esc(x.t) + '" loading="lazy" width="480" height="480"><span class="off num">‎-' + x.off + '%</span>' + (hotIds.indexOf(x.id) > -1 ? '<span class="hotf">🔥 רב מכר</span>' : '') + '</div>' +
+        '<div class="pb"><span class="pcat">' + cat + '</span><h3>' + esc(x.t) + '</h3>' +
+        '<div class="st num"><span><span class="star">★</span> ' + x.r + '</span><span>' + x.s.toLocaleString("he-IL") + ' נמכרו</span></div>' +
+        '<div class="pr num"><b>' + fmt(x.p) + '</b><s>' + fmt(x.o) + '</s></div>' +
+        '<span class="save num">חוסכים ' + fmt(x.save) + '</span>' +
+        '<a class="go" href="' + L + x.id + '" target="_blank" rel="noopener sponsored">לצפייה בדיל</a></div></article>';
+    }).join("");
+  }
+  render();
+
+  var banner = document.getElementById("saleBanner");
+  function pad(n){ return (n<10?"0":"") + n; }
+  function tick(){
+    var ms = SALE.until - new Date();
+    if (ms <= 0) { banner.hidden = true; return false; }
+    var s = Math.floor(ms/1000);
+    document.getElementById("t-d").textContent = Math.floor(s/86400);
+    document.getElementById("t-h").textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById("t-m").textContent = pad(Math.floor(s%3600/60));
+    document.getElementById("t-s").textContent = pad(s%60);
+    return true;
+  }
+  if (tick()) {
+    setInterval(tick, 1000);
+    var codes = document.getElementById("codes");
+    SALE.codes.forEach(function(c){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "code"; b.id = "copy-" + c[0];
+      b.setAttribute("aria-label", "העתקת קוד " + c[0]);
+      b.innerHTML = '<b>' + c[0] + '</b><span class="num">₪' + c[1] + ' מעל ₪' + c[2] + '</span>';
+      codes.appendChild(b);
+    });
+    codes.addEventListener("click", function(e){
+      var b = e.target.closest(".code"); if (!b) return;
+      var code = b.id.replace("copy-",""), sp = b.querySelector("span"), old = sp.textContent;
+      function ok(){ b.classList.add("done"); sp.textContent = "הועתק ✓"; setTimeout(function(){ b.classList.remove("done"); sp.textContent = old; }, 1600); }
+      function fallback(){ var r = document.createRange(); r.selectNodeContents(b.querySelector("b")); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); sp.textContent = "סמנו והעתיקו"; }
+      try { navigator.clipboard.writeText(code).then(ok, fallback); } catch(err) { fallback(); }
+    });
+  }
+
+  var root = document.documentElement, KEY = "hahotfim-a11y", pref = {fs:1, hc:false, ul:false};
+  try { pref = Object.assign(pref, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch(e){}
+  function apply(){ root.style.setProperty("--fs", pref.fs); root.classList.toggle("hc", pref.hc); root.classList.toggle("ul", pref.ul); try { localStorage.setItem(KEY, JSON.stringify(pref)); } catch(e){} }
+  apply();
+  var btn = document.getElementById("a11yBtn"), panel = document.getElementById("a11yPanel");
+  btn.addEventListener("click", function(){ panel.hidden = !panel.hidden; btn.setAttribute("aria-expanded", String(!panel.hidden)); });
+  document.getElementById("a11y-plus").addEventListener("click", function(){ pref.fs = Math.min(1.4, +(pref.fs + .1).toFixed(1)); apply(); });
+  document.getElementById("a11y-minus").addEventListener("click", function(){ pref.fs = Math.max(.9, +(pref.fs - .1).toFixed(1)); apply(); });
+  document.getElementById("a11y-hc").addEventListener("click", function(){ pref.hc = !pref.hc; apply(); });
+  document.getElementById("a11y-ul").addEventListener("click", function(){ pref.ul = !pref.ul; apply(); });
+  document.getElementById("a11y-reset").addEventListener("click", function(){ pref = {fs:1, hc:false, ul:false}; apply(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !panel.hidden) { panel.hidden = true; btn.setAttribute("aria-expanded","false"); btn.focus(); } });
+
+  function openHash(){ var el = location.hash && document.getElementById(location.hash.slice(1)); if (el && el.tagName === "DETAILS") { el.open = true; el.scrollIntoView({block:"start"}); } }
+  window.addEventListener("hashchange", openHash); openHash();
+})();
+</script>
+
+</body>
+</html>
