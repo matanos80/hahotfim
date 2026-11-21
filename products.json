@@ -1,5 +1,71 @@
 [
  {
+  "id": "c3PvSHNL",
+  "t": "מזרקת מים חכמה 3L חתול אינדוקציה אלחוטית אוטומטית מתקן לחיות מחמד נירוסטה",
+  "c": "pets",
+  "p": 163.99,
+  "o": 329.62,
+  "r": 4.9,
+  "s": 1774,
+  "img": "img/c3PvSHNL.jpg",
+  "time": "2026-11-21T15:19:16+00:00"
+ },
+ {
+  "id": "c3QrYlGt",
+  "t": "שדרוג AZDOME M550 Pro Dash Cam 4K מצלמת דש קדמית אוטומטית 5.8Ghz Wi-Fi GPS",
+  "c": "car",
+  "p": 221.12,
+  "o": 421.32,
+  "r": 4.7,
+  "s": 2388,
+  "img": "img/c3QrYlGt.jpg",
+  "time": "2026-11-21T15:17:56+00:00"
+ },
+ {
+  "id": "c405T0Qv",
+  "t": "מסך משני מסוג 3.5 אינץ' למחשב מעבד RAM GPU HDD צג 320*480 IPS LCD ISB",
+  "c": "gaming",
+  "p": 67.94,
+  "o": 156.23,
+  "r": 4.7,
+  "s": 3802,
+  "img": "img/c405T0Qv.jpg",
+  "time": "2026-11-21T12:18:59+00:00"
+ },
+ {
+  "id": "c3EHMM77",
+  "t": "GMKtec K12 Gaming Mini PC AMD Ryzen 7 H 255 משודרג 8745HS מחשבים שולחניים",
+  "c": "gaming",
+  "p": 1073.1,
+  "o": 2609.05,
+  "r": 4.8,
+  "s": 4438,
+  "img": "img/c3EHMM77.jpg",
+  "time": "2026-11-21T12:17:57+00:00"
+ },
+ {
+  "id": "c4Nr3YTj",
+  "t": "7 צבעים Led מסכת פנים עם צוואר טיפול באור אדום למיצוק העור הרמת אנטי",
+  "c": "beauty",
+  "p": 47.06,
+  "o": 105.4,
+  "r": 4.9,
+  "s": 1870,
+  "img": "img/c4Nr3YTj.jpg",
+  "time": "2026-11-21T09:19:25+00:00"
+ },
+ {
+  "id": "c3DpRvEz",
+  "t": "מעמד חצובה אלחוטי Bluetooth Selfie Stick הניתן להארכה אוניברסלי מחזיק",
+  "c": "gadgets",
+  "p": 17.19,
+  "o": 37.58,
+  "r": 4.9,
+  "s": 5479,
+  "img": "img/c3DpRvEz.jpg",
+  "time": "2026-11-21T09:18:01+00:00"
+ },
+ {
   "id": "c4Pk19BB",
   "t": "חצובת סלפי אלחוטי 3 ב-1 בלוטות' עם תריס מילוי שלט רחוק נייד מתקפל מונופוד",
   "c": "gadgets",
@@ -812,71 +878,5 @@
   "s": 2349,
   "img": "img/c3pdaiML.jpg",
   "time": "2026-11-13T16:40:03+00:00"
- },
- {
-  "id": "c3IWtALh",
-  "t": "Ulanzi MT-84 1.53M Magsafe Selfie Stick מעמד חצובה Bluetooth הרחבת טלפון",
-  "c": "gadgets",
-  "p": 112.9,
-  "o": 268.81,
-  "r": 4.8,
-  "s": 1144,
-  "img": "img/c3IWtALh.jpg",
-  "time": "2026-11-13T16:38:52+00:00"
- },
- {
-  "id": "c3TYZDNZ",
-  "t": "300000 RPM מפוחי טורבו חשמליים ללא מברשות מאוורר סילון 400M S מפוח עלים כף",
-  "c": "tools",
-  "p": 227.69,
-  "o": 494.98,
-  "r": 4.9,
-  "s": 2960,
-  "img": "img/c3TYZDNZ.jpg",
-  "time": "2026-11-13T16:21:10+00:00"
- },
- {
-  "id": "c2QBIH67",
-  "t": "CMF by Nothing Watch Pro 2 1.32 אינץ' AMOLED Bluetooth 5.3",
-  "c": "audio",
-  "p": 289.9,
-  "o": 690.24,
-  "r": 4.8,
-  "s": 1343,
-  "img": "img/c2QBIH67.jpg",
-  "time": "2026-11-13T16:20:07+00:00"
- },
- {
-  "id": "c3nHDOOr",
-  "t": "GameSir Tarantula Pro Gamepad PC עבור Nintendo Switch 2 אנדרואיד iOS",
-  "c": "gaming",
-  "p": 181.28,
-  "o": 470.29,
-  "r": 4.8,
-  "s": 1489,
-  "img": "img/c3nHDOOr.jpg",
-  "time": "2026-11-13T15:18:34+00:00"
- },
- {
-  "id": "c3s3P3m3",
-  "t": "SoundPEATS H3 אוזניות Bluetooth אלחוטיות Hybrid 3 Driver HiFi 55dB ANC",
-  "c": "audio",
-  "p": 315.16,
-  "o": 740.28,
-  "r": 4.8,
-  "s": 1230,
-  "img": "img/c3s3P3m3.jpg",
-  "time": "2026-11-13T15:17:32+00:00"
- },
- {
-  "id": "c39nhtzD",
-  "t": "YZ For Tesla Model 3 Y YL Highland Juniper",
-  "c": "car",
-  "p": 110.39,
-  "o": 262.83,
-  "r": 4.7,
-  "s": 2863,
-  "img": "img/c39nhtzD.jpg",
-  "time": "2026-11-13T15:14:38+00:00"
  }
 ]
